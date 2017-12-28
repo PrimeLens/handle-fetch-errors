@@ -15,12 +15,11 @@ var request = new Request(finalURL, reqObj);
 var fPointer = fetch(request)
 .then(response => {
   if (!response.ok) {
-    throw Error(response.statusText, response);
+    throw Error(response);
   }
   return response;
 })
-.catch((errText, response)=>{
-  console.log('===>  ', errText);                 // 'BAD REQUEST'
+.catch(response=>{
   console.log('===>  ' + typeof response.status); // 'number'
   console.log('===>  ' + response.status);        // 400
   console.log('===>  ' + response.statusText);    // 'BAD REQUEST'
