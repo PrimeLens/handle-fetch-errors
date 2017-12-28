@@ -22,12 +22,21 @@ var fPointer = fetch(request)
     response.text().then(text => {
       console.log('===>  ' + text);                 // custom text sent from back end
     });  
-    throw Error(response.statusText);
+    // can detect cstom error codes written by back end
+    if (response.status===432){
+      // must pass in a string to Error, it yields and object
+      throw new Error('Bad json');
+    } else {
+      // must pass in a string to Error, it yields and object
+      throw new Error(response.statusText);
+    }
   }
   return response;
 })
-.catch(errorStatusText=>{
-  console.log(errorStatusText);
+.catch(errObj=>{
+  // must pass in a string to Error, it yields and object
+  // text appears in message property
+  console.log(errObj.message);
 });
 
 
