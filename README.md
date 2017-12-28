@@ -20,13 +20,13 @@ var fPointer = fetch(request)
   return response;
 })
 .catch((errText, response)=>{
-  console.log('===>  ', errText);
-  console.log('===>  ' + typeof response.status);
-  console.log('===>  ' + response.status);
-  console.log('===>  ' + response.statusText);
+  console.log('===>  ', errText);                 // 'BAD REQUEST'
+  console.log('===>  ' + typeof response.status); // 'number'
+  console.log('===>  ' + response.status);        // 400
+  console.log('===>  ' + response.statusText);    // 'BAD REQUEST'
   // if text is sent with it
   response.text().then(text => {
-    console.log('===>  ' + text);
+    console.log('===>  ' + text);                 // custom text sent from back end
   });
 });
 
